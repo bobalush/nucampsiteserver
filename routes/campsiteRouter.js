@@ -31,7 +31,6 @@ campsiteRouter.route('/')
     Campsite.deleteMany()
     .then(response => {
         res.statusCode = 200;
-        res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.json(response);
     })
@@ -42,7 +41,6 @@ campsiteRouter.route('/:campsiteId')
 .get((req, res, next) => {
     Campsite.findById(req.params.campsiteId)
     .then(campsite => {
-        res.statusCode = 200;
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.json(campsite);
@@ -59,7 +57,6 @@ campsiteRouter.route('/:campsiteId')
    }, { new: true})
    .then(campsite => {
     res.statusCode = 200;
-    res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.json(campsite);
 })
@@ -68,7 +65,6 @@ campsiteRouter.route('/:campsiteId')
 .delete((req, res, next) => {
     Campsite.findByIdAndDelete(req.params.campsiteId)
     .then(campsite => {
-        res.statusCode = 200;
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.json(campsite);

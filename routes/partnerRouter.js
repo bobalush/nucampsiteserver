@@ -15,7 +15,7 @@ partnerRouter.route('/')
 .post((req, res, next) => {
     Partner.create(req.body)
     .then(partner => {
-        console.log(`Will add the partner: ${req.body.name} with description: ${req.body.description}`);
+        console.log('Partner Created ', partner);
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.json(partner);
@@ -26,7 +26,7 @@ partnerRouter.route('/')
     res.statusCode = 403;
     res.end('PUT operation not supported on /partners');
 })
-.delete((req, res) => {
+.delete((req, res, next) => {
     Partner.deleteMany()
     .then(response => {
         res.statusCode = 200;
@@ -45,7 +45,6 @@ partnerRouter.route('/:partnerId')
         res.json(partner);
     })
     .catch(err => next(err));
-    //res.end(`Will send details of the partner: ${req.params.partnerId} to you`);
 })
 .post((req, res) => {
     res.statusCode = 403;
@@ -61,9 +60,7 @@ partnerRouter.route('/:partnerId')
         res.json(partner);
     })
     .catch(err => next(err));
-   // res.write(`Updating the partner: ${req.params.partnerId} \n`);
-    // res.end(`Will update the partner: ${req.body.name} \n with description: ${req.body.description}`);
-})
+   })
 .delete((req, res, next) => {
     Partner.findByIdAndDelete(req.params.partnerId)
     .then(partner => {
@@ -72,8 +69,7 @@ partnerRouter.route('/:partnerId')
         res.json(partner);
     })
     .catch(err => next(err));
-    //res.end(`Deleting partner: ${req.params.partnerId}`);
-});
+   });
 
 
 module.exports = partnerRouter;

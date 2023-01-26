@@ -16,14 +16,13 @@ promotionRouter.route('/')
 .post((req, res, next) => {
     Promotion.create(req.body)
     .then(promotion => {
-        console.log('Campsite Created ', promotion);
+        console.log('Promotion Created ', promotion);
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.json(promotion);
     })
     .catch(err => next(err));
-    //res.end(`Will add the promotion: ${req.body.name} with description: ${req.body.description}`);
-})
+   })
 .put((req, res) => {
     res.statusCode = 403;
     res.end('PUT operation not supported on /promotions');
@@ -36,8 +35,7 @@ promotionRouter.route('/')
         res.json(response);
     })
     .catch(err => next(err));
-    //res.end('Deleting all promotions');
-});
+   });
 
 promotionRouter.route('/:promotionId')
 .get((req, res, next) => {
@@ -48,8 +46,7 @@ promotionRouter.route('/:promotionId')
         res.json(promotion);
     })
     .catch(err => next(err));
-    //res.end(`Will send details of the promotion: ${req.params.promotionId} to you`);
-})
+    })
 .post((req, res) => {
     res.statusCode = 403;
     res.end(`POST operation not supported on /promotions/${req.params.promotionId}`);
@@ -64,9 +61,7 @@ promotionRouter.route('/:promotionId')
         res.json(promotion);
     })
     .catch(err => next(err));
-   // res.write(`Updating the promotion: ${req.params.promotionId} \n`);
-   // res.end(`Will update the promotion: ${req.body.name} \n with description: ${req.body.description}`);
-})
+   })
 .delete((req, res, next) => {
     Promotion.findByIdAndDelete(req.params.promotionId)
     .then(promotion => {
